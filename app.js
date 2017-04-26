@@ -12,25 +12,29 @@ var questions = [
     answers: [  "They steal other races technology.",
                 "They don't use technology.",
                 "Because they believe it does.",
-                "Because captured slaves provide them technology."]
+                "Because captured slaves provide them technology."],
+    correct: 2
     },{
     question: "Where do the Dark Gods come from?",
     answers: [  "From another galaxy close to the Milky Way.",
                 "The Warp.",
                 "Hell.",
-                "From people's beliefs."]
+                "From people's beliefs."],
+    correct: 1
     },{
     question: "What is the symbol of the Imperium of Man?",
     answers: [  "The Lion.",
                 "The Dragon.",
                 "A skull on black crossed by two swords.",
-                "The Aquila."]
+                "The Aquila."],
+    correct: 3
     },{
     question: "What is the standard ranged weapon of the Space Marines?",
     answers: [  "The chainsword.",
                 "The lasgun.",
                 "The beamgun",
-                "The boltgun."]
+                "The boltgun."],
+    correct: 3
     }
 
 ]
@@ -50,6 +54,10 @@ var questionTemplate = `<div class="questionBox"> \
     </form> \
 </div>`
 
+// var countersTemplate =
+// `<h3 class="js-questionNumber">${questionNumber}</h3> \
+// <h3 class="js-correctAnswers">${correct}</h3>`
+
 function render(questions, questionTemplate, index) {
     var template = $(questionTemplate)
     template.find('.js-questionTitle').text(questions[index].question)
@@ -62,6 +70,14 @@ function render(questions, questionTemplate, index) {
     $('.mainContainer').html(template)
 }
 
+function renderCorrect(index, correctAnswersCounter) {
+    var questionNumber = index + 1
+    var correct = "Correct Anwers: " + correctAnswersCounter + " out of " + questionNumber
+    var countersTemplate =
+    `<h3 class="js-correctAnswers">${correct}</h3>`
+    $('.scoreContainer').html(countersTemplate)
+}
+
 //Event listeners
 function submitForm() {
     $('#question').submit(function(event) {
@@ -71,8 +87,10 @@ function submitForm() {
         if (userAnswer == questions[index].correct) {
             alert("You are correct!")
             correctAnswersCounter += 1
+            renderCorrect(index, correctAnswersCounter)
         } else {
             alert("Sorry, you got it wrong!")
+            renderCorrect(index, correctAnswersCounter)
         }
 
         index += 1
@@ -83,5 +101,13 @@ function submitForm() {
 
 $(document).ready(function() {
     render(questions, questionTemplate, index)
+    renderCorrect(index, correctAnswersCounter)
     submitForm()
 })
+
+// function renderCorrect(countersTemplate, correctAnswersCounter, index) {
+//     var footerTemplate = $(countersTemplate)
+//     var correct = "You have: " + correctAnswersCounter + " out of " + index + 1
+//     footerTemplate.find('.js-correctAnswers').text(correct)
+//     $('.scoreContainer').html(footerTemplate)
+// }
