@@ -105,7 +105,7 @@ function submitForm() {
             renderResults(correctAnswersCounter)
         }
 
-        })
+    })
 
 }
 
