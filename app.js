@@ -54,10 +54,6 @@ var questionTemplate = `<div class="questionBox"> \
     </form> \
 </div>`
 
-// var countersTemplate =
-// `<h3 class="js-questionNumber">${questionNumber}</h3> \
-// <h3 class="js-correctAnswers">${correct}</h3>`
-
 function render(questions, questionTemplate, index) {
     var template = $(questionTemplate)
     template.find('.js-questionTitle').text(questions[index].question)
@@ -74,8 +70,15 @@ function renderCorrect(index, correctAnswersCounter) {
     var questionNumber = index + 1
     var correct = "Correct Anwers: " + correctAnswersCounter + " out of " + questionNumber
     var countersTemplate =
-    `<h3 class="js-correctAnswers">${correct}</h3>`
+    `<h2 class="js-correctAnswers">${correct}</h2>`
     $('.scoreContainer').html(countersTemplate)
+}
+
+function renderResults(correctAnswersCounter) {
+    var correct = "You finished and got " + correctAnswersCounter + " correct answers out of " + index
+    var countersTemplate =
+    `<h2 class="js-correctAnswers">${correct}</h2>`
+    $('.mainContainer').html(countersTemplate)
 }
 
 //Event listeners
@@ -94,9 +97,16 @@ function submitForm() {
         }
 
         index += 1
-        render(questions, questionTemplate, index)
-        submitForm()
-    })
+
+        if (index < questions.length) {
+            render(questions, questionTemplate, index)
+            submitForm()
+        } else {
+            renderResults(correctAnswersCounter)
+        }
+
+        })
+
 }
 
 $(document).ready(function() {
@@ -104,10 +114,3 @@ $(document).ready(function() {
     renderCorrect(index, correctAnswersCounter)
     submitForm()
 })
-
-// function renderCorrect(countersTemplate, correctAnswersCounter, index) {
-//     var footerTemplate = $(countersTemplate)
-//     var correct = "You have: " + correctAnswersCounter + " out of " + index + 1
-//     footerTemplate.find('.js-correctAnswers').text(correct)
-//     $('.scoreContainer').html(footerTemplate)
-// }

@@ -6,7 +6,7 @@ html, body {
 html {
     background-color: black;
 }
-/*#C0004A*/
+
 body {
     display: flex;
     justify-content: space-between;
