@@ -2,6 +2,7 @@ html, body {
     margin: 0;
     height: 100%;
     font-size: 24px;
+    font-family: monospace;
 }
 
 html {
@@ -23,7 +24,7 @@ body {
 }
 
 nav, footer {
-    background-image: url('images/backgroundTile.jpg');
+    background-color: #222222;
     color: white;
     display: flex;
     justify-content: space-around;
@@ -36,7 +37,7 @@ nav {
 
 main {
     margin: 0;
-    padding: 0;
+    padding: 0 0 0 20px;
     color: white;
     background-image: url('images/mainBackground.jpg');
     background-size: 100% 100%;
@@ -60,9 +61,14 @@ h1, h2 {
     border-radius: 3px;
     background-image: url('images/backgroundTile.png');
     color: white;
-    border: 1px solid darkgrey;
+    border-top: none;
+    border-left: none;
+    border-bottom: 2px solid grey;
+    border-right: 2px solid grey;
+    margin-top: 10px;
     font-size: 16px;
     font-weight: bold;
+    line-height: 28px;
 }
 
 footer {
