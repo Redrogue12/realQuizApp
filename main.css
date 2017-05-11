@@ -19,7 +19,7 @@ main {
     margin: 0;
     padding: 0;
     color: white;
-    background-image: url('../images/startBackground.jpg');
+    background-image: url('images/startBackground.jpg');
     background-size: 100% 100%;
     background-repeat: no-repeat;
     width: 1000px;
